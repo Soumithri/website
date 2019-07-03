@@ -8,6 +8,9 @@
 .idea/vcs.xml
 .idea/jsLibraryMappings.xml
 
+# Document-specific stuff:
+portfolio/__pycache__/
+
 ### Django ###
 *.log
 *.pot
