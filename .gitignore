@@ -1,5 +1,15 @@
- Created by https://www.gitignore.io/api/python,django
+# Created by https://www.gitignore.io/api/python,django
 # Edit at https://www.gitignore.io/?templates=python,django
+
+# User-specific stuff:
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries
+.idea/vcs.xml
+.idea/jsLibraryMappings.xml
+
+# Document-specific stuff:
+portfolio/__pycache__/
 
 ### Django ###
 *.log
