@@ -208,3 +208,9 @@ dmypy.json
 # Pyre type checker
 
 # End of https://www.gitignore.io/api/python,django
+
+# Text backup files
+*.bak
+
+# Database
+*.sqlite3
