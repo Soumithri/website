@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% block title %}<title>Soumithri Chilakamarri</title>{% endblock %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+
+  <!-- Add additional CSS in static file -->
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body style="background-image: url('{% static "images/home_bg.jpg" %}')">
+  <div class="container-fluid">
+
+
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg" >
+        <div class="container">
+        <a  class="navbar-brand profile-image img-circle" href="{% url 'home' %}">
+              <img id="profile-img" src="{% static 'images/my_bitmoji.png' %}" alt="">
+          </a>
+        <div class="d-flex flex-row order-2 order-lg-3">
+            <ul class="navbar-nav flex-row">
+                <li class="nav-item"><a class="nav-link px-2" href="https://github.com/Soumithri"><span class="fa fa-github"></span></a></li>
+                <li class="nav-item"><a class="nav-link px-2" href="https://www.linkedin.com/in/soumithrichilakamarri/"><span class="fa fa-linkedin"></span></a></li>
+            </ul>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse order-3 order-lg-2" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a href="{% url 'home' %}" class="nav-item nav-link active">Home</a></li>
+                <li class="nav-item"><a href="" class="nav-item nav-link">Blog</a></li>
+                <li class="nav-item"><a href="" class="nav-item nav-link">Contact</a></li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+  </div>
+  <div class="container">
+
+        {% block content %}{% endblock %}
+
+    {% block pagination %}
+       {% if is_paginated %}
+          <div class="pagination">
+            <span class="page-links">
+              {% if page_obj.has_previous %}
+                 <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+              {% endif %}
+              <span class="page-current">
+                  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+              </span>
+               {% if page_obj.has_next %}
+                    <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+               {% endif %}
+            </span>
+          </div>
+       {% endif %}
+    {% endblock %}
+
+  </div>
+
+</body>
+</html>
