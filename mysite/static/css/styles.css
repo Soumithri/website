@@ -1,0 +1,46 @@
+.main-container {
+    padding-top: 50px;
+}
+
+.index-intro{
+    width: 100%;
+}
+
+.index-intro .jumbotron{
+    padding: 100px 60px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.index-intro .jumbotron h1{
+    font-size: 50px;
+}
+
+.index-projects {
+    width: 100%;
+    padding-top: 30px;
+    padding-bottom: 60px;
+}
+
+.index-projects h1{
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.navbar {
+ text-align:center;
+}

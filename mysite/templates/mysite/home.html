@@ -1,0 +1,46 @@
+{% extends 'base_generic.html' %}
+
+{% load static %}
+{% block content %}
+<section class="main-container">
+    <article class="index-intro">
+        <div class="container-fluid">
+            <div class="jumbotron" style="background-image: url('{% static "images/my_cover_photo.jpg" %}');">
+                <div class="row">
+                <div class="col-sm-8">
+                    <h2>Hello, this is Soumithri Chilakamarri</h2>
+                    <p class="lead">I'm a Python Developer and Machine Learning Engineer, recently graduated from San Francisco State University. This is a portfolio.</p>
+                </div>
+                <div class="col-sm-4"></div>
+            </div>
+
+            </div>
+         </div>
+    </article>
+
+<article class="index-projects">
+<div class="container-fluid">
+
+
+<h1>Projects</h1>
+<div class="row">
+{% for project in project_list %}
+    <div class="col-md-3">
+        <div class="card mb-3">
+            <img class="card-img-top" src="{{ project.image.url }}" alt="{{ project.title }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ project.title }}</h5>
+                <p class="card-text">{{ project.description }}</p>
+                <a href="{% url 'project_detail' project.pk %}"
+                   class="btn btn-primary">
+                    Read More
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</div>
+</article>
+</section>
+{% endblock %}
