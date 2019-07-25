@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_content %}
+<section class="main-container" xmlns="http://www.w3.org/1999/html">
+    <article class="banner">
+    <div class ='container'>
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-sm-8">
+                    <h1>Hey! I'm Soumithri.</h1>
+                    <p>Python Developer & Machine Learning Engineer.
+                        <br>Currently pursuing Masters in Computer Science from San Francisco State University.
+                        <br>Yes, I'm available for hire.
+                    </p>
+                </div>
+                <div class="col-sm-4"></div>
+            </div>
+        </div>
+    </div>
+    </article>
+
+<article class="project-list">
+<div class="container">
+    <h1>Projects</h1>
+          <div class="row ">
+              {% for project in project_list %}
+                <div class="card-container col-md-6 col-sm-12 col-lg-4">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="{{ project.cover_image.url }}" alt="">
+                          <div class="card-body flex-fill">
+                            <h5 class="card-title">{{ project.title }}</h5>
+                            <p class="card-text">{{ project.description }}</p>
+                          </div>
+                        <div class="card-footer bg-transparent">
+                            <a href="{% url 'project_detail' project.pk %}"
+                               class="btn btn-primary">
+                                Read More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+              {% endfor %}
+          </div>
+        </div>
+</article>
+</section>
+{% endblock %}
