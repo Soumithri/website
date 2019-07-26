@@ -1,0 +1,36 @@
+.main-container{
+    padding-top: 50px;
+}
+
+.card {
+    width: 18rem;
+}
+
+.card-footer{
+    border: 0;
+}
+
+.banner .jumbotron{
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.banner .jumbotron h1{
+    font-size: 50px;
+}
+
+.project-list{
+    width:100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.project-list h1{
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.project-list .card-container{
+    padding-bottom: 30px;
+}
