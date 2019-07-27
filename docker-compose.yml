@@ -1,0 +1,40 @@
+version: "3"
+services:
+  django:
+    restart: always
+    container_name: django_server
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: docker_django_portfolio
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/var/www/portfolio
+    ports:
+      - "8000:8000"
+    links:
+      - db
+    environment:
+      - MONGO_ENGINE=djongo
+      - MONGO_HOST=${DB_HOST}
+      - MONGO_USER=${DB_USER}
+      - MONGO_PASSWORD=${DB_PWD}
+      - MONGO_DEV_DATABASE=${DEV_DB_NAME}
+      - MONGO_PROD_DATABASE=${PROD_DB_NAME}
+      - DJANGO_PROD_SECRET_KEY=${DJANGO_PROD_SECRET_KEY}
+      - DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE}
+  db:
+    restart: always
+    image: mongo:latest
+    container_name: mongodb
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${DB_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_PWD}
+      - MONGO_INITDB_DEV_DATABASE:=${DEV_DB_NAME}
+      - MONGO_INITDB_PROD_DATABASE:=${DEV_DB_NAME}
+    volumes:
+      - .:/var/www/portfolio/data/db
+    command: mongod --storageEngine wiredTiger
+    ports:
+      - "27017:27017"
