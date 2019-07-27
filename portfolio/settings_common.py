@@ -16,12 +16,12 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Add media root and url for serving in deployment
-MEDIA_ROOT = os.path.join(BASE_DIR, "../portfolio/media")
+MEDIA_ROOT = os.path.join(BASE_DIR, "portfolio/media")
 MEDIA_URL = "/media/"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
-
+SECRET_KEY = os.environ.get('DJANGO_PROD_SECRET_KEY', '^dte)152$+w47_)ck5ie=4^0a9u#r0t)g45dj8^*8y2q#483jf')
 
 # Application definition
 
@@ -47,10 +47,25 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'portfolio.urls'
 
+ALLOWED_HOSTS = ['.pythonanywhere.com']
+
+DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
+
+DATABASES = {
+    'default': {
+        'ENGINE': os.environ.get('MONGO_ENGINE', 'django.db.backends.sqlite3'),
+        'HOST': os.environ.get('MONGO_HOST', 'localhost'),
+        'USER': os.environ.get('MONGO_USER', 'user'),
+        'PASSWORD': os.environ.get('MONGO_PASSWORD', 'password'),
+        'NAME': os.environ.get('MONGO_PROD_DATABASE', os.path.join(BASE_DIR, 'db.sqlite3')),
+    }
+}
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, '../portfolio/templates'),
+        'DIRS': [os.path.join(BASE_DIR, 'portfolio/templates'),
                  ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -104,15 +119,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 # The absolute path to the directory where collectstatic will collect static files for deployment.
-STATIC_ROOT = os.path.join(BASE_DIR, '../portfolio/staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'portfolio/staticfiles')
 
 # The URL to use when referring to static files (where they will be served from)
 STATIC_URL = '/static/'
 
 # Extra lookup directories for collectstatic to find static files
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, '../portfolio/static'),
-    os.path.join(BASE_DIR, '../mysite/../mysite/static'),
+    os.path.join(BASE_DIR, 'portfolio/static'),
+    os.path.join(BASE_DIR, 'mysite/static'),
 )
 
 
