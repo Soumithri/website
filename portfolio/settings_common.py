@@ -16,21 +16,11 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Add media root and url for serving in deployment
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_ROOT = os.path.join(BASE_DIR, "../portfolio/media")
 MEDIA_URL = "/media/"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = '^dte)152$+w47_)ck5ie=4^0a9u#r0t)g45dj8^*8y2q#483jf'
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '^dte)152$+w47_)ck5ie=4^0a9u#r0t)g45dj8^*8y2q#483jf')
-
-# SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = False
-DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
-
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'testserver', '.herokuapp.com', '.pythonanywhere.com']
 
 
 # Application definition
@@ -42,7 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'mysite'
+    'mysite',
 ]
 
 MIDDLEWARE = [
@@ -60,7 +50,7 @@ ROOT_URLCONF = 'portfolio.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates'),
+        'DIRS': [os.path.join(BASE_DIR, '../portfolio/templates'),
                  ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -75,20 +65,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'portfolio.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': os.environ.get('MONGO_ENGINE', 'django.db.backends.sqlite3'),
-        'NAME': os.environ.get('MONGO_DATABASE', os.path.join(BASE_DIR, 'db.sqlite3')),
-        'USER': os.environ.get('MONGO_USER', 'user'),
-        'PASSWORD': os.environ.get('MONGO_PASSWORD', 'password'),
-        'HOST': os.environ.get('MONGO_HOST', 'localhost'),
-    }
-}
 
 
 # Password validation
@@ -128,15 +104,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 # The absolute path to the directory where collectstatic will collect static files for deployment.
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, '../portfolio/staticfiles')
 
 # The URL to use when referring to static files (where they will be served from)
 STATIC_URL = '/static/'
 
 # Extra lookup directories for collectstatic to find static files
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-    os.path.join(BASE_DIR, 'mysite/static'),
+    os.path.join(BASE_DIR, '../portfolio/static'),
+    os.path.join(BASE_DIR, '../mysite/../mysite/static'),
 )
 
 
