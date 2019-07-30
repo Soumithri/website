@@ -214,3 +214,6 @@ dmypy.json
 
 # Database
 *.sqlite3
+
+# VS code folder
+.vscode
