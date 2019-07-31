@@ -4,8 +4,8 @@ services:
   db:
     image: postgres
   web:
-    build: .
-    command: python3 manage.py runserver 0.0.0.0:8000
+    build: ./backend
+    command: /start.sh
     volumes:
       - .:/code
     ports:
