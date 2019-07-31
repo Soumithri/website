@@ -4,5 +4,5 @@ from . import views
 
 urlpatterns = [
     path('posts/', views.PostList.as_view(), name='posts'),
-    path('posts/<int:pk>/', views.PostDetail.as_view(), name='post-detail-view'),
+    path('post/<int:pk>/', views.PostDetail.as_view(), name='post-detail'),
 ]
