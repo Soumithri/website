@@ -4,3 +4,4 @@ djangorestframework
 django-filter
 djangorestframework-jwt
 django-cors-headers
+gunicorn
