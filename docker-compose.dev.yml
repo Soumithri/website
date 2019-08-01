@@ -1,0 +1,63 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    ports:
+    - "5432:5432"
+    networks:
+      - django-nginx
+  
+  backend:
+    container_name: backend
+    build: ./backend
+    command: /start_dev.sh
+    volumes:
+      - .:/code
+      - django-static:/backend/static
+    ports:
+      - "8000:8000"
+    networks:
+      - django-nginx
+    depends_on:
+      - db
+    links:
+      - db:db
+
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+    volumes:
+      - './frontend:/app/'
+      - '/app/node_modules'
+    ports:
+      - "8080:8080"
+    depends_on:
+      - backend
+    networks:
+      - django-nginx
+    environment:
+      - NODE_ENV=development
+
+  
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    volumes:
+      - ./nginx/dev.conf:/etc/nginx/nginx.conf:ro
+      - django-static:/usr/src/app/static
+    networks:
+      - django-nginx
+
+volumes:
+  django-static:
+
+networks:
+  django-nginx:
+    driver: bridge
