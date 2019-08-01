@@ -10,11 +10,15 @@ services:
     networks:
       - django-nginx
       - backend_network
+    expose:
+      - 8000
     depends_on:
       - db
     links:
       - db:db
-      
+    environment: 
+      - SECRET_KEY=${SECRET_KEY}
+      - DEBUG=${DEBUG}
 
   db:
     image: postgres
