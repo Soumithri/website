@@ -28,7 +28,7 @@ services:
       context: .
       dockerfile: ./nginx/Dockerfile
     ports:
-      - 80:80
+      - 1337:80
     networks:
       - django-nginx
     volumes:
@@ -36,7 +36,6 @@ services:
       - django-static:/usr/src/app/static
     depends_on:
       - backend
-      - backend_network
 
 volumes:
   django-static:
