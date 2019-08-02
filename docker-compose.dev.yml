@@ -16,6 +16,7 @@ services:
     volumes:
       - .:/code
       - django-static:/backend/static
+      - media_volume:/usr/src/app/mediafiles
     ports:
       - "8000:8000"
     networks:
@@ -52,11 +53,13 @@ services:
     volumes:
       - ./nginx/dev.conf:/etc/nginx/nginx.conf:ro
       - django-static:/usr/src/app/static
+      - media_volume:/usr/src/app/mediafiles
     networks:
       - django-nginx
 
 volumes:
   django-static:
+  media_volume:
 
 networks:
   django-nginx:

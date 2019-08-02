@@ -1,19 +1,36 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/posts">Posts</router-link> |
-      <router-link to="/about">About</router-link>
-
+      <b-container>
+        <b-nav justified>
+          <b-nav-item active>
+            <router-link to="/">Home</router-link>
+          </b-nav-item>
+         
+          <!-- <b-nav-item>
+            <router-link to="/posts">Blogs</router-link>
+          </b-nav-item> -->
+         
+          <b-nav-item>
+            <router-link to="/about">About</router-link>
+          </b-nav-item>
+          
+          <b-nav-item>Resume</b-nav-item>
+          <b-nav-item>Contact</b-nav-item>
+        </b-nav>
+        <hr class="my-4">
+      </b-container>
     </div>
     <router-view/>
   </div>
 </template>
 
 <script>
-import Header from './components/Header.vue'
+import Banner from '@/components/Banner.vue';
 export default {
-  
+  components: {
+    Banner,
+  }
 }
 </script>
 
@@ -24,9 +41,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  padding-bottom: 30px;
 }
 #nav {
-  padding: 30px;
+  padding-top: 30px;
 }
 
 #nav a {

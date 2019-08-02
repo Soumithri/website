@@ -1,5 +1,5 @@
 # build stage
-FROM node:lts-alpine as build-stage
+FROM node:12.6.0-alpine as build-stage
 WORKDIR /app/
 COPY frontend/package.json /app/
 RUN npm cache verify
