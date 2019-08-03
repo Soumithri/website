@@ -7,7 +7,7 @@ services:
     volumes:
       - .:/code
       - django-static:/backend/static
-      - media_volume:/usr/src/app/mediafiles
+      - media_volume:/backend/media
     networks:
       - django-nginx
       - backend_network
@@ -33,13 +33,13 @@ services:
       context: .
       dockerfile: ./nginx/Dockerfile
     ports:
-      - 1337:80
+      - 8000:80
     networks:
       - django-nginx
     volumes:
       - ./nginx/prod.conf:/etc/nginx/nginx.conf:ro
       - django-static:/usr/src/app/static
-      - media_volume:/usr/src/app/mediafiles
+      - media_volume:/usr/src/app/media
     depends_on:
       - backend
 
