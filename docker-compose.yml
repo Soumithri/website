@@ -6,10 +6,10 @@ services:
     command: /start_prod.sh
     volumes:
       - .:/code
-      - django-static:/backend/static
+      - ./backend/static:/usr/src/app/static
+      - ./backend/media/:/usr/src/app/media
     networks:
       - django-nginx
-      - backend_network
     expose:
       - 8000
     depends_on:
@@ -25,27 +25,22 @@ services:
     restart: always
     networks:
       - django-nginx
-      - backend_network
 
   nginx:
     build:
       context: .
       dockerfile: ./nginx/Dockerfile
     ports:
-      - 1337:80
+      - 8000:80
     networks:
       - django-nginx
     volumes:
       - ./nginx/prod.conf:/etc/nginx/nginx.conf:ro
-      - django-static:/usr/src/app/static
+      - ./backend/static:/usr/src/app/static
+      - ./backend/media/:/usr/src/app/media
     depends_on:
       - backend
 
-volumes:
-  django-static:
-
 networks:
   django-nginx:
-    driver: bridge
-  backend_network:
     driver: bridge
