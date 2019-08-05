@@ -229,3 +229,7 @@ public/
 .deploy*/
 src/_drafts
 package-lock.json
+
+# SSL & encryption directories
+data/
+dhparam/
