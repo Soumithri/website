@@ -38,7 +38,7 @@ export default {
   },
   methods: {
 	fetchPosts() {
-		fetch('http://localhost:8000/api/projects/', {
+		fetch('http://localhost/api/projects/', {
 		  method: 'get',
 		  headers: {
 			  Accept: 'application/json',
