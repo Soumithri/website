@@ -2,6 +2,7 @@ version: '3'
 
 services:
   backend:
+    image: soumithri93/website_backend
     build: ./backend
     command: /start_prod.sh
     volumes:
@@ -27,6 +28,7 @@ services:
       - django-nginx
 
   nginx:
+    image: soumithri93/website_nginx
     build:
       context: .
       dockerfile: ./nginx/Dockerfile
