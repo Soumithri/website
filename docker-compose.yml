@@ -34,14 +34,26 @@ services:
       dockerfile: ./nginx/Dockerfile
     ports:
       - "80:80"
+      - "443:443"
     networks:
       - django-nginx
     volumes:
       - ./nginx/prod.conf:/etc/nginx/nginx.conf:ro
       - ./backend/static:/usr/src/app/static
       - ./backend/media/:/usr/src/app/media
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+      - ./dhparam:/etc/ssl/certs
     depends_on:
       - backend
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    command: certonly --webroot --webroot-path=/var/www/certbot --email soumithri93@gmail.com --agree-tos --no-eff-email --force-renewal -d soumithri93.com -d www.soumithri93.com
 
 networks:
   django-nginx:
