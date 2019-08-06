@@ -34,11 +34,11 @@ export default {
   },
   mounted() {
 	this.fetchPosts();
-	document.title = 'Soumithri ';
+	document.title = 'Soumithri';
   },
   methods: {
 	fetchPosts() {
-		fetch('http://soumithri93/api/projects/', {
+		fetch('https://soumithri93/api/projects/', {
 		  method: 'get',
 		  headers: {
 			  Accept: 'application/json',
